@@ -1,0 +1,71 @@
+<% if title.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(title.errors.count, "error") %> prohibited this title from being saved:</h2>
+
+    <ul>
+      <% title.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for title, html: { class: "form-horizontal" } do |form| %>
+
+<div class="box">
+  <div class="box-header with-order">
+    <h3 class="h4">タイトル情報</h3>
+  </div>
+
+  <div class="box-body">
+    <div class="form-group">
+      <%= form.label :name, "名前", class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-header with-order">
+    <h3 class="h4">本情報</h3>
+  </div>
+
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="col-sm-2"></th>
+          <th class="col-sm-5">巻数</th>
+          <th class="col-sm-5"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= form.fields_for :books do |book_form| %>
+          <tr>
+            <td></td>
+            <td>
+              <%= book_form.text_field :volume, class: "form-control" %>
+            </td>
+            <td>
+              <div class="checkbox">
+                <%= book_form.label :_destroy do %>
+                  <%= book_form.check_box :_destroy %> 削除
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-footer">
+    <div class="form-group">
+      <div class=" col-sm-offset-2 col-sm-5">
+        <%= form.submit class: "btn btn-info" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

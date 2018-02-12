@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: one
+  volume: 1
+
+two:
+  title: two
+  volume: 1

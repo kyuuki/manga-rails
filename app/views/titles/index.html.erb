@@ -1,0 +1,47 @@
+<% content_for :title do %>
+  タイトル一覧
+<% end %>
+
+<div class="box">
+  <div class="box-header with-border">
+    <div class="pull-right">
+      <%= link_to new_title_path, class: "btn btn-default btn-sm" do %>
+        <i class="fa fa-plus"></i>&nbsp; 新規作成
+      <% end %>
+    </div>
+  </div>
+
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-sm-1">ID</th>
+          <th class="col-sm-4">タイトル</th>
+          <th class="col-sm-3">著者</th>
+          <th class="col-sm-4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @titles.each do |title| %>
+          <tr>
+            <td><%= title.id %></td>
+            <td><%= title.name %></td>
+            <td></td>
+            <td class="text-right">
+              <%= link_to title, class: "btn btn-default btn-sm" do %>
+                <i class="fa fa-caret-right"></i>&nbsp;詳細
+              <% end %>
+              <%= link_to edit_title_path(title), class: "btn btn-default btn-sm" do %>
+                <i class="fa fa-edit"></i>&nbsp;編集
+              <% end %>
+              <%= link_to title, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do %>
+                <i class="fa fa-minus"></i>&nbsp;削除
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
